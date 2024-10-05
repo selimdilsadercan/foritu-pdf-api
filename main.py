@@ -19,6 +19,7 @@ import uvicorn
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
 SUPABASE_BUCKET = os.environ.get("SUPABASE_BUCKET")
+PORT = os.environ.get("PORT") or 8080;
 
 # Supabase istemcisini oluştur
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
@@ -125,7 +126,7 @@ async def upload_pdf(qr_code_url: str, club_name: str, logo_url: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 async def root():
@@ -136,4 +137,4 @@ async def favicon():
     return FileResponse("static/favicon.ico")
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run(app, host="0.0.0.0", port=PORT)
