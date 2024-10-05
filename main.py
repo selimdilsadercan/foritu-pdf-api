@@ -19,7 +19,6 @@ import uvicorn
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
 SUPABASE_BUCKET = os.environ.get("SUPABASE_BUCKET")
-PORT = os.environ.get("PORT") or 8080;
 
 # Supabase istemcisini oluştur
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
@@ -137,4 +136,4 @@ async def favicon():
     return FileResponse("static/favicon.ico")
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=PORT)
+    uvicorn.run(app, host="0.0.0.0", port=10000)
