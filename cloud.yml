@@ -1,0 +1,23 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: pdf-creator
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: gcr.io/foritu-version1/app-web:app-web
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SUPABASE_URL  # Buraya .env dosyasındaki bir değişkeni ekleyebilirsin
+          value: "https://kjoenbrfqxljeklnmbev.supabase.co"  # Değeri kendi ihtiyacına göre güncelle
+        - name: SUPABASE_KEY  # Buraya .env dosyasındaki bir değişkeni ekleyebilirsin
+          value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtqb2VuYnJmcXhsamVrbG5tYmV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjUxMTIxMzAsImV4cCI6MjA0MDY4ODEzMH0.nHwB5kF4CybdoidcPTQZWd-vCHVgq4QTgXVPpRsC5Bo"  # Değeri kendi ihtiyacına göre güncelle
+        - name: SUPABASE_BUCKET  # Buraya .env dosyasındaki bir değişkeni ekleyebilirsin
+          value: "qr_pdf"  # Değeri kendi ihtiyacına göre güncelle
+        resources:
+          limits:
+            memory: 6Gi  # Bellek limitini artırdık
+            cpu: 4      # CPU limitini artırdık
