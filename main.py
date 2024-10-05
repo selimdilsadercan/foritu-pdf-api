@@ -16,9 +16,9 @@ import uvicorn
 
 # Supabase yapılandırma bilgileri
 load_dotenv()
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-SUPABASE_BUCKET = os.getenv("SUPABASE_BUCKET")
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
+SUPABASE_BUCKET = os.environ.get("SUPABASE_BUCKET")
 
 # Supabase istemcisini oluştur
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
